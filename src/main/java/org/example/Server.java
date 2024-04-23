@@ -42,7 +42,7 @@ public class Server {
 
                     if (parts.length != 3) {
                         // just close socket
-                        launchServer();
+                        return;
                     }
 
                     final var path = parts[1];
@@ -54,7 +54,7 @@ public class Server {
                                         "\r\n"
                         ).getBytes());
                         out.flush();
-                        launchServer();
+                        return;
                     }
 
                     final var filePath = Path.of(".", "public", path);
@@ -76,7 +76,7 @@ public class Server {
                         ).getBytes());
                         out.write(content);
                         out.flush();
-                        launchServer();
+                        return;
                     }
 
                     final var length = Files.size(filePath);
